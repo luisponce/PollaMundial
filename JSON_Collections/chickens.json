@@ -1,0 +1,58 @@
+{
+  "name": "chicken",
+  "stages": [
+    {
+      "groups": [
+        {
+          "groupId": 1,
+          "name": "A",
+          "teams": []
+        },
+        {
+          "groupId": 2,
+          "name": "B",
+          "teams": []
+        }
+      ],
+      "teams": [
+        {
+          "teamId": 1
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "groupId": 1,
+          "name": "A",
+          "teams": []
+        },
+        {
+          "groupId": 2,
+          "name": "B",
+          "teams": []
+        }
+      ],
+      "teams": [
+        {
+          "teamId": 1
+        }
+      ]
+    }
+  ],
+  "currentStage": 1,
+  "users": [
+    {
+      "id": 1,
+      "accepted": true
+    },
+    {
+      "id": 2,
+      "accepted": false
+    }
+  ],
+  "bid": 10000,
+  "firstPlace": 0.7,
+  "secondPlace": 0.2,
+  "thirdPlace": 0.1
+}

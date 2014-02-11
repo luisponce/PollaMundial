@@ -1,0 +1,16 @@
+{
+  "groups": [
+    {
+      "groupId": 1,
+      "name" : "A",
+      "teams" : []
+    },
+    {
+      "groupId": 2,
+      "name" : "B",
+      "teams" : []
+    }
+  ],
+  "teams" : [{"teamId" : 1}],
+  "nextStage" : "stageId"
+}

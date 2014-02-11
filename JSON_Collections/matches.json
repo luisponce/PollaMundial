@@ -1,0 +1,4 @@
+{
+    "local" : {"name" : "tapitas", "goals" : 2, "penalties" : 5},
+    "visitor" : {"name" : "tapotas", "goals" : 2, "penalties" : 6}
+}

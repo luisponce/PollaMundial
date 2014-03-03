@@ -85,8 +85,17 @@
           <div id="register">
           <h2>o entra con tus cuentas de:</h2>
           <p><a href="#"><img src="img/facebooksignin.png" width="211" height="41" alt="facebook signin"></a></p>
-          <p><a href="#"><img src="img/googlesignin.png" width="211" height="41" alt="google signin"></a></p>
-          
+          <!--<p><a href="#"><img src="img/googlesignin.png" width="211" height="41" alt="google signin"></a></p>-->
+          <span id="signinButton">
+            <span
+              class="g-signin"
+              data-callback="signinCallback"
+              data-clientid="926989083139-h3uf3vs66e41tdvf846j7khb4kqctcgl.apps.googleusercontent.com"
+              data-cookiepolicy="single_host_origin"
+              data-requestvisibleactions="http://schemas.google.com/AddActivity"
+              data-scope="https://www.googleapis.com/auth/plus.login">
+            </span>
+          </span>
           </div>
       </div>
     </div>
@@ -103,5 +112,35 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
+    <script>
+    
+    function signinCallback(authResult) {
+            if (authResult.status.signed_in) {
+              // Update the app to reflect a signed in user
+              // Hide the sign-in button now that the user is authorized, for example:
+              document.getElementById('signinButton').setAttribute('style', 'display: none');
+              Console.log("entre");
+            } else {
+              // Update the app to reflect a signed out user
+              // Possible error values:
+              //   "user_signed_out" - User is signed-out
+              //   "access_denied" - User denied access to your app
+              //   "immediate_failed" - Could not automatically log in the user
+              console.log('Sign-in state: ' + authResult['error']);
+            }
+          }
+    </script>
+    <script type="text/javascript">
+        (function() {
+          var po = document.createElement('script');
+          po.type = 'text/javascript';
+          po.async = true;
+          po.src = 'https://apis.google.com/js/plusone.js?onload=OnLoadCallback';
+          var s = document.getElementsByTagName('script')[0];
+          s.parentNode.insertBefore(po, s);
+        })();
+        
+        
+    </script>
   </body>
 </html>

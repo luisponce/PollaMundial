@@ -22,6 +22,8 @@ server.listen(port, ipAdd, function(){
 });
 
 function findChampionships(req, res, next){
+  res.header("Access-Control-Allow-Origin", "*"); 
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
     db.collection('chickens').find({'users' : {'$elemMatch' : {'id' : parseInt(req.params.userId)}}}).toArray(function(err, chickens){
        if(err) {throw err};
        res.send(200, chickens);
@@ -30,6 +32,8 @@ function findChampionships(req, res, next){
 }
 
 function findChampionshipById(req, res, next){
+  res.header("Access-Control-Allow-Origin", "*"); 
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
     db.collection('chickens').find({'_id' : new ObjectId(req.params.chickenId)}, function(err, chicken){
        if(err){throw err;}
        res.send(200, chicken);

@@ -1,7 +1,7 @@
-var urlbase = "http://localhost/";
+var urlbase = "http://127.0.0.1:8080/";
 
-function Campeonato() {
-
+function Campeonato(id) {
+    this.id = id;
 }
 
 /***
@@ -10,23 +10,21 @@ function Campeonato() {
  * @returns {undefined}
  */
 Campeonato.get = function(id, callback) {
-
-    var params = {command: "get", userId: id};
-    callService(urlbase, params, "GET", callback);
+    callService(urlbase + "campeonatos/" + id, "GET", callback);
 };
 
 // <editor-fold defaultstate="collapsed" desc="callService">
-function callService(urlService, args, callType, callBackFunction) {
+function callService(urlService, callType, callBackFunction) {
     $.ajax({
-        dataType: "jsonp",
+        dataType: "json",
         url: urlService,
-        data: args,
         type: callType,
-        crossDomain: true,
+//        data: args,
+//        crossDomain: true,
         success: function(data) {
             eval(callBackFunction)(data);
-        }, error: function(e, xhr) {
-            console.log(e);
+        }, error: function(data, status, errorThrown) {
+            console.log(status + ">>  " + errorThrown);
         }});
 }
 // </editor-fold>

@@ -4,6 +4,11 @@ $(document).ready(function() {
     if (user_id === undefined) {
         user_id = 0;
     }
+
+    Campeonato.get(1, function(data) {
+        console.log(data[0].name);
+    });
+
 //  Campeonato.get("fillCampeonatos");
     fillCampeonatos([{name: "Polla #3"}, {name: "Polla #4"}]);
 

@@ -1,7 +1,7 @@
 var http = require('http');
 var restify = require('restify');
-var mongojs = require('mongojs');
-var ObjectId = require("mongojs").ObjectId;
+var mongoClient = require('mongodb').MongoClient;
+var ObjectID = require('mongodb').ObjectID;
 
 var server = restify.createServer({name : 'myapp'});
 
@@ -12,32 +12,38 @@ server.use(restify.queryParser());
 server.use(restify.bodyParser());
 server.use(restify.CORS());
 
-server.get({path : '/campeonatos' + '/:userId', version : '0.0.1'}, findChampionships);
+server.get({path : '/campeonatos' + '/:userMail', version : '0.0.1'}, findChampionships);
 server.get({path : '/campeonato' + '/:chickenId', version : '0.0.1'}, findChampionshipById);
 
-var db = mongojs('127.0.0.1:27017/chicken');
+var db;
+
+mongoClient.connect('mongodb://localhost:27017/chicken', function(err, dbInst){
+    if(err){
+        throw err;
+    }
+    db = dbInst;
+});
 
 server.listen(port, ipAdd, function(){
-    console.log(server.name + ' escuchando por ' + server.url);
+    console.log(server.name + ' listening in ' + server.url);
 });
 
 function findChampionships(req, res, next){
   res.header("Access-Control-Allow-Origin", "*"); 
   res.header("Access-Control-Allow-Headers", "X-Requested-With");
-    db.collection('chickens').find({'users' : {'$elemMatch' : {'id' : parseInt(req.params.userId)}}}).toArray(function(err, chickens){
+    db.collection('chickens').find({'users' : {'$elemMatch' : {'id' : req.params.userMail}}}).toArray(function(err, chickens){
        if(err) {throw err};
        res.send(200, chickens);
-       return next();
     });
 }
 
 function findChampionshipById(req, res, next){
-  res.header("Access-Control-Allow-Origin", "*"); 
-  res.header("Access-Control-Allow-Headers", "X-Requested-With");
-    db.collection('chickens').find({'_id' : new ObjectId(req.params.chickenId)}, function(err, chicken){
+    res.header("Access-Control-Allow-Origin", "*"); 
+    res.header("Access-Control-Allow-Headers", "X-Requested-With");
+    db.collection('chickens').findOne({'_id' : new ObjectID(req.params.chickenId)}, function(err, chicken){
        if(err){throw err;}
+       console.dir(chicken);
        res.send(200, chicken);
-       return next();
     });
 }
 

@@ -28,6 +28,17 @@
 
   <body>
 
+    <div id="fb-root"></div>
+    <script>
+      (function(d, s, id){
+         var js, fjs = d.getElementsByTagName(s)[0];
+         if (d.getElementById(id)) {return;}
+         js = d.createElement(s); js.id = id;
+         js.src = "//connect.facebook.net/en_US/all.js";
+         fjs.parentNode.insertBefore(js, fjs);
+       }(document, 'script', 'facebook-jssdk'));
+    </script>
+      
     <!-- Wrap all page content here -->
     <div id="wrap">
 
@@ -84,8 +95,14 @@
           </div>
           <div id="register">
           <h2>o entra con tus cuentas de:</h2>
-          <p><a href="#"><img src="img/facebooksignin.png" width="211" height="41" alt="facebook signin"></a></p>
+          <!--<p><a href="#"><img src="img/facebooksignin.png" width="211" height="41" alt="facebook signin"></a></p>-->
           <!--<p><a href="#"><img src="img/googlesignin.png" width="211" height="41" alt="google signin"></a></p>-->
+          <span class="fb-login-button"
+                data-max-rows="1"
+                data-size="xlarge"
+                data-show-faces="false"
+                data-auto-logout-link="true">
+          </span>
           <span id="signinButton">
             <span
               class="g-signin"

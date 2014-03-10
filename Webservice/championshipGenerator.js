@@ -5,7 +5,9 @@ mongoClient.connect('mongodb://localhost:27017/chicken', function(err, db){
         throw err;
     }
     
-    for(var i = 0; i < 10; i++){
+    
+    
+    for(var i = 10; i < 20; i++){
         var teams = [{teamId : 1}, {teamId : 2}];
         var groups = [
             {'groupId' : 1, 'name' : 'A', 'teams' : []},
@@ -13,8 +15,12 @@ mongoClient.connect('mongodb://localhost:27017/chicken', function(err, db){
         ];
         var users = [
             {
-                'id' : 1,
+                'id' : 'user' + i + '@gmail.com',
                 'accepted' : true
+            },
+            {
+                'id' : 'user' + (i + 10) + '@gmail.com',
+                'accepted' : (i%2 == 0)
             }
         ];
         var polla = {
@@ -31,5 +37,4 @@ mongoClient.connect('mongodb://localhost:27017/chicken', function(err, db){
             if(err) throw err;
         });
     }
-    db.close();
 });

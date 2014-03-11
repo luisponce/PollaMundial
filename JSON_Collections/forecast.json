@@ -1,16 +1,25 @@
 {
-  "username": "juancho",
-  "matchId": 2,
-  "forecast": {
-    "local": {
-      "name": "tapitas",
-      "goals": 2,
-      "penalties": 5
-    },
-    "visitor": {
-      "name": "tapotas",
-      "goals": 2,
-      "penalties": 6
+    "polla_id": "32mjydm7878",
+    "user_id": "juancho@pacho.com",
+    "points": 50,
+    "stage": {
+        "stage": 1,
+        "matches": [
+            {
+                "match_id": 2,
+                "home": 4,
+                "visitor": 3
+            },
+            {
+                "match_id": 2,
+                "home": 4,
+                "visitor": 3
+            },
+            {
+                "match_id": 2,
+                "home": 4,
+                "visitor": 3
+            }
+        ]
     }
-  }
 }

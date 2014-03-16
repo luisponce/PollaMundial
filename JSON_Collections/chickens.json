@@ -1,58 +1,99 @@
 {
-  "name": "chicken",
-  "stages": [
-    {
-      "groups": [
+    "name": "chicken",
+    "admin": "support@fuckyou.com",
+    "state": "closed|open|finished",
+    "stages": [
         {
-          "groupId": 1,
-          "name": "A",
-          "teams": []
+            "groups": [
+                {
+                    "groupId": 1,
+                    "name": "A",
+                    "teams": [
+                    ]
+                },
+                {
+                    "groupId": 2,
+                    "name": "B",
+                    "teams": [
+                    ]
+                }
+            ],
+            "teams": [
+                {
+                    "teamId": 1
+                }
+            ],
+            "matches": [
+                {
+                    "match_id": 132123,
+                    "home": {
+                        "team_id": "1",
+                        "goals": 2,
+                        "penalties": 5
+                    },
+                    "visitor": {
+                        "team_id": "1",
+                        "goals": 2,
+                        "penalties": 6
+                    }
+                },
+                {
+                    "match_id": 132123,
+                    "home": {
+                        "team_id": "1",
+                        "goals": 2
+                    },
+                    "visitor": {
+                        "team_id": "1",
+                        "goals": 2
+                    }
+                },
+                {
+                    "match_id": 132123,
+                    "home": {
+                        "team_id": "1"
+                    },
+                    "visitor": {
+                        "team_id": "1"
+                    }
+                }
+            ]
         },
         {
-          "groupId": 2,
-          "name": "B",
-          "teams": []
+            "groups": [
+                {
+                    "groupId": 1,
+                    "name": "A",
+                    "teams": [
+                    ]
+                },
+                {
+                    "groupId": 2,
+                    "name": "B",
+                    "teams": [
+                    ]
+                }
+            ],
+            "teams": [
+                {
+                    "teamId": 1
+                }
+            ]
         }
-      ],
-      "teams": [
+    ],
+    "currentStage": 1,
+    "users": [
         {
-          "teamId": 1
-        }
-      ]
-    },
-    {
-      "groups": [
-        {
-          "groupId": 1,
-          "name": "A",
-          "teams": []
+            "id": "user2@domain.com",
+            "accepted": true
         },
         {
-          "groupId": 2,
-          "name": "B",
-          "teams": []
+            "id": "user@domain.com",
+            "accepted": false
         }
-      ],
-      "teams": [
-        {
-          "teamId": 1
-        }
-      ]
-    }
-  ],
-  "currentStage": 1,
-  "users": [
-    {
-      "id": "user2@domain.com",
-      "accepted": true
-    },
-    {
-      "id": "user@domain.com",
-      "accepted": false
-    }
-  ],
-  "bid": 10000,
-  "firstPlace": 0.7,
-  "secondPlace": 0.2,
-  "thirdPlace": 0.1
+    ],
+    "bid": 10000,
+    "firstPlace": 0.7,
+    "secondPlace": 0.2,
+    "thirdPlace": 0.1
 }

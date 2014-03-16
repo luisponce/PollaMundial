@@ -1,8 +1,10 @@
+// <editor-fold defaultstate="collapsed" desc="hola">
+
 var http = require('http');
 var restify = require('restify');
 var mongoClient = require('mongodb').MongoClient;
 var ObjectID = require('mongodb').ObjectID;
-
+// </editor-fold>
 var server = restify.createServer({name : 'myapp'});
 
 var ipAdd = '127.0.0.1';
@@ -29,7 +31,7 @@ server.listen(port, ipAdd, function(){
 });
 
 function findChampionships(req, res, next){
-  res.header("Access-Control-Allow-Origin", "*"); 
+  res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "X-Requested-With");
     db.collection('chickens').find({'users' : {'$elemMatch' : {'id' : req.params.userMail}}}).toArray(function(err, chickens){
        if(err) {throw err};
@@ -38,7 +40,7 @@ function findChampionships(req, res, next){
 }
 
 function findChampionshipById(req, res, next){
-    res.header("Access-Control-Allow-Origin", "*"); 
+    res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "X-Requested-With");
     db.collection('chickens').findOne({'_id' : new ObjectID(req.params.chickenId)}, function(err, chicken){
        if(err){throw err;}

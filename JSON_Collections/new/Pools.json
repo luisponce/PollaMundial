@@ -1,0 +1,37 @@
+{
+  "stages": [
+    {
+      "id": 987,
+      "groups": [
+        {
+          "matches": [
+            {
+              "id": 875,
+              "homeId": 8342,
+              "visitorId": 2342,
+              "homeScore": 0,
+              "visitorScore": 2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 987,
+      "rounds": [
+        {
+          "matches": [
+            {
+              "id": 875,
+              "homeId": 8342,
+              "visitorId": 2342,
+              "homeScore": 0,
+              "visitorScore": 2
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "teams" : ["Colombia", "Brasil", "Japón"]
+}

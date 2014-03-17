@@ -2,6 +2,7 @@
   "stages": [
     {
       "id": 987,
+      "status" : "open/closed",
       "groups": [
         {
           "matches": [
@@ -18,6 +19,7 @@
     },
     {
       "id": 987,
+      "status" : "open/closed",
       "rounds": [
         {
           "matches": [

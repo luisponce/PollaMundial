@@ -1,0 +1,39 @@
+{
+  "_id": "email@domain.com",
+  "name": "Poncio",
+  "username": "lponce",
+  "password": "olasoiponse",
+  "idGoogle": "1234ds",
+  "idFacebook": "2343259kfdd",
+  "pic": "www.sddw.png",
+  "pools": [
+    {
+      "poolId": 9876,
+      "score": 50,
+      "stages": [
+        {
+          "stageId": 309872,
+          "forecasts": [
+            {
+              "matchId": 687,
+              "team1": 2,
+              "team2": 3
+            }
+          ],
+          "rounds": [
+            {
+              "roundId": 980,
+              "forecasts": [
+                {
+                  "matchId": 687,
+                  "team1": 2,
+                  "team2": 3
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

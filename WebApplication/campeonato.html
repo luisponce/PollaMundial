@@ -78,40 +78,40 @@
             </div>
             <div class="col-md-6">
                 <div class="table-responsive">
-                    
-                    <!-- Tabla de Grupos Resultados
+
+                    <!--Tabla de Grupos Resultados-->
                     <table class="table table-bordered table-striped">
-                                            <thead>
-                                                <tr>
-                                                    <th colspan="4">Grupo A</th>
-                                                </tr>
-                                                <tr>
-                                                    <th class="text-center">Equipo 1</th>
-                                                    <th class="text-center">Resultados</th>
-                                                    <th class="text-center">Pronostico</th>
-                                                    <th class="text-center">Equipo 2</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td class="text-center">
-                                                        Brasil
-                                                    </td>
-                                                    <td class="text-center">
-                                                        <span class="label label-primary">1</span> -
-                                                        <span class="label label-primary">0</span>
-                                                    </td>
-                                                    <td class="text-center">
-                                                        <span class="label label-warning">5</span> -
-                                                        <span class="label label-warning">0</span>
-                                                    </td>
-                                                    <td class="text-center">
-                                                        Croacia
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>-->
-<!--                    Insertar Pronostico
+                        <thead>
+                            <tr>
+                                <th colspan="4">Grupo A</th>
+                            </tr>
+                            <tr>
+                                <th class="text-center">Equipo 1</th>
+                                <th class="text-center">Resultados</th>
+                                <th class="text-center">Pronostico</th>
+                                <th class="text-center">Equipo 2</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="text-center">
+                                    Brasil
+                                </td>
+                                <td class="text-center">
+                                    <span class="label label-primary">1</span> -
+                                    <span class="label label-primary">0</span>
+                                </td>
+                                <td class="text-center">
+                                    <span class="label label-warning">5</span> -
+                                    <span class="label label-warning">0</span>
+                                </td>
+                                <td class="text-center">
+                                    Croacia
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    Insertar Pronostico
                     <table class="table table-bordered table-striped">
                         <thead>
                             <tr>
@@ -123,8 +123,8 @@
                                 <th class="text-center">Equipo 2</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
+                        <tbody id="pronostico_input">
+                            <tr id="2342">
                                 <td class="text-center">
                                     Brasil
                                 </td>
@@ -137,7 +137,27 @@
                                 </td>
                             </tr>
                         </tbody>
-                    </table>-->
+                    </table>
+                    <button type="button" class="btn btn-default pull-right" data-toggle="modal" data-target="#myModal">Guardar</button>
+                    
+                    <!--modal-->
+                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                    <h4 class="modal-title" id="myModalLabel">Confirmar pronosticos</h4>
+                                </div>
+                                <div class="modal-body">
+                                    ¿Esta seguro que desea guardar estos pronosticos? Una vez guardados no podra cambiarlos.
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                                    <button type="button" id="btn-guardar" class="btn btn-primary">Guardar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div></div>
             <div class="col-md-6">
                 <h3>Ranking</h3>

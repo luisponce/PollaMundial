@@ -126,5 +126,11 @@ table.reference td{
     width: 40px;
 }
 
+.btn-right{
+/*    position: absolute;*/
+    clear: both;
+    float: right;
+}
+
 #input-group{
     padding-top:20px}

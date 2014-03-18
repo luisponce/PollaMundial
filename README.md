@@ -6,6 +6,8 @@ App web para administrar pollas para el mundial.
 API
 ---
 ####GET
+
+####POST
 - Register user
 
  * Description: registers the user if it doesn't already exist.
@@ -13,8 +15,9 @@ API
  * Path: /user/
 
  * Parameters: {user:<user json obj>}
+ * Returns: True if user was inserted, false if not.
 
-* Notice: the request's data type should be set to "application/json". The json object should be sent like this: 
+ * Notice: the request's data type should be set to "application/json". The json object should be sent like this: 
 "{\"user\" : {...}}". ('\' before all double quotations except for the initial and final ones).
 
 ##Links

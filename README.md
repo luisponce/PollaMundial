@@ -5,8 +5,8 @@ App web para administrar pollas para el mundial.
 
 ##API
 
-- GET
-- - Registrar usuario
+##- GET
+Register user
 Path: /user/
 Parameters: {user:<user json obj>}
 Notice: the request's data type should be set to "application/json". Json object should be sent like this: 

@@ -3,10 +3,10 @@ PollaMundial
 
 App web para administrar pollas para el mundial.
 
-##API
-
-##- GET
-Register user
+API
+---
+##GET
+-Register user
 Path: /user/
 Parameters: {user:<user json obj>}
 Notice: the request's data type should be set to "application/json". Json object should be sent like this: 
@@ -14,5 +14,3 @@ Notice: the request's data type should be set to "application/json". Json object
 
 ##Links
 [Carpeta en drive] (https://drive.google.com/folderview?id=0B7RgRUtptFbYdUZkRXJIbWZ2T1U&usp=sharing)
-
-API GET:

@@ -22,23 +22,11 @@ server.use(restify.queryParser());
 server.use(restify.bodyParser());
 server.use(restify.CORS());
 
-server.get({path : '/pool' + '/:userId', version : '0.0.1'},
-    function(req, res, next){
-        handlers.getPoolByUserId(req, res, next);
-    }
-);
+server.get({path : '/pool' + '/:userId'}, handlers.getPoolsByUserId);
 
-server.get({path : '/pool' + '/:poolId' + "/:userId", version : '0.0.1'},
-    function(req, res, next){
-        handlers.checkUserRegistration(req, res, next);
-    }
-);
+server.get({path : '/pool' + '/:poolId' + "/:userId"}, handlers.checkUserRegistration);
 
-server.post({path : '/user' + ':user', version : '0.0.1'},
-    function(req, res, next){
-        handlers.registerUser(req, res, next);
-    }
-);
+server.post('/user', handlers.registerUser);
 
 server.listen(port, ipAdd, function(){
     console.log(server.name + ' listening in ' + server.url);

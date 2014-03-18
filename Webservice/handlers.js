@@ -28,23 +28,45 @@ function getPoolsByUserId(req, res, next){
 function checkUserRegistration(req, res, next){
     //Buscar la polla y revisar si está cerrada. si no, ver si el
     //usuario está registrado.
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "X-Requested-With");
+    db.collection('users').findOne({'_id' : req.params.userId},
+        function(err, doc){
+            if(err){
+                res.send(200, 'false');
+                return next();
+            }
+            if(doc){
+                for(var i = 0; i < doc.pools.length; i++){
+                    if(doc.pools[i].poolId == req.params.poolId){
+                        res.send(200, 'false');
+                    }
+                }
+                res.send(200, 'true');
+                return next();
+            }
+        }
+    );
 }
 
 // </editor-fold>
 
 // <editor-fold defaultstate="collapsed" desc="POST services">
 function registerUser(req, res, next){
+    console.dir("registering");
     //Registrar el usuario. Si algo sale mal, retornar falso.
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "X-Requested-With");
-    db.collection('users').insert(JSON.parse(req.params.user), 
+    
+    db.collection('users').insert(req.params.user, 
         function(err, doc){
             if(err){
                 res.send(500, "false");
-                throw err;
+                return next();
             }
             else{
                 res.send(200, "true");
+                return next();
             }
         }
     );    
@@ -62,7 +84,8 @@ function setDB(dbCon){
 }
 
 exports.setDB = setDB;
-exports.getPools = getPools;
-exports.getPoolById = getPoolById;
+//exports.getPools = getPools;
+//exports.getPoolById = getPoolById;
 exports.getPoolsByUserId = getPoolsByUserId;
 exports.checkUserRegistration = checkUserRegistration;
+exports.registerUser = registerUser;

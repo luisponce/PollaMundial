@@ -93,7 +93,7 @@ function checkUserRegistration(req, res, next){
 // </editor-fold>
 
 // <editor-fold defaultstate="collapsed" desc="POST services">
-function registerUser(req, res, next){
+function insertUser(req, res, next){
     console.dir("registering");
     //Registrar el usuario. Si algo sale mal, retornar falso.
     res.header("Access-Control-Allow-Origin", "*");
@@ -144,5 +144,5 @@ exports.setDB = setDB;
 //exports.getPoolById = getPoolById;
 exports.getPoolsByUserId = getPoolsByUserId;
 exports.checkUserRegistration = checkUserRegistration;
-exports.registerUser = registerUser;
+exports.insertUser = insertUser;
 exports.insertPool = insertPool;

@@ -25,7 +25,7 @@ server.use(restify.CORS());
 server.get({path : '/pool' + '/:userId'}, handlers.getPoolsByUserId);
 server.get({path : '/pool' + '/:poolId' + "/:userId"}, handlers.checkUserRegistration);
 
-server.post('/user', handlers.registerUser);
+server.post('/user', handlers.insertUser);
 server.post('/pool', handlers.insertPool);
 
 server.listen(port, ipAdd, function(){

@@ -23,10 +23,10 @@ server.use(restify.bodyParser());
 server.use(restify.CORS());
 
 server.get({path : '/pool' + '/:userId'}, handlers.getPoolsByUserId);
-
 server.get({path : '/pool' + '/:poolId' + "/:userId"}, handlers.checkUserRegistration);
 
 server.post('/user', handlers.registerUser);
+server.post('/pool', handlers.insertPool);
 
 server.listen(port, ipAdd, function(){
     console.log(server.name + ' listening in ' + server.url);

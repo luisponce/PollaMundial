@@ -1,3 +1,4 @@
+var ObjectID = require('mongodb').ObjectID;
 var db;
 
 // <editor-fold defaultstate="collapsed" desc="GET services">
@@ -23,6 +24,46 @@ var db;
 function getPoolsByUserId(req, res, next){
     //Retorna la lista de pollas a las que está registrado el
     //userID (mail)
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "X-Requested-With");
+    var query  = {'_id' : req.params.userId};
+    var projection = {
+        '_id' : false,
+        'name' : false,
+        'username' : false,
+        'password' : false,
+        'pic' : false
+    };
+    db.collection('users').findOne(query, projection,
+        function(err, doc){
+            if(err){
+                res.send(501, err);
+                return next(err);
+            }
+            if(doc){
+                var poolIds = [];
+                for(var i = 0; i < doc.pools.length; i++){
+                    poolIds.push(doc.pools[i].poolId);
+                    console.dir(poolIds[poolIds.length - 1] + "  ");
+                }
+                //TODO: fix '_id ' should be '_id' (no space).
+                db.collection('pools').find({'_id ' : {$in : poolIds}}).toArray(
+                    function(err, pools){
+                        if(err){
+                            res.send(501, err);
+                            return next(err);
+                        }
+                        if(pools){
+                            res.send(200, pools);
+                        }
+                    }
+                );
+            }
+            else{
+                return next(new Error("Nothing found"));
+            }
+        }
+    );
 }
 
 function checkUserRegistration(req, res, next){
@@ -76,6 +117,21 @@ function registerUserToPool(req, res, next){
     //Registrar un usuario en una polla. Retornar falso si pasa algo.
 }
 
+function insertPool(req, res, next){
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "X-Requested-With");
+    db.collection('pools').insert(req.params.pool, 
+        function(err, doc){
+            if(err){
+                res.send(501, err);
+                return next(err);
+            }
+            res.send(200, "true");
+            return next();
+        }
+    );   
+}
+
 
 // </editor-fold>
 
@@ -89,3 +145,4 @@ exports.setDB = setDB;
 exports.getPoolsByUserId = getPoolsByUserId;
 exports.checkUserRegistration = checkUserRegistration;
 exports.registerUser = registerUser;
+exports.insertPool = insertPool;

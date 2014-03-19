@@ -114,7 +114,7 @@ function insertUser(req, res, next){
 }
 
 function registerUserToPool(req, res, next){
-    //Registrar un usuario en una polla. Retornar falso si pasa algo.
+    //upsert user object with new pool.
 }
 
 function insertPool(req, res, next){

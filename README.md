@@ -20,7 +20,7 @@ API
  * Try with: curl -i -X GET http://localhost:8080/pool/userId
 
 ####POST
-- Register user
+- Insert user
 
  * Description: registers the user if it doesn't already exist.
 

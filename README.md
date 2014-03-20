@@ -19,6 +19,19 @@ API
  
  * Try with: curl -i -X GET http://localhost:8080/pool/userId
 
+- Check User Registration
+
+ * Description: Checks if a given user can be registered to a pool
+
+ * Path: /pool/poolId/userId
+
+ * Parameters: poolId, userId
+ * Returns: True if user is already registered to a pool, false if he's already registered or the pool is closed.
+
+ * Notice: parameter should be sent in the following way: /pool/poolId/userId.
+ 
+ * Try with: curl -i -X GET http://localhost:8080/pool/poolId/userId
+
 ####POST
 - Insert user
 

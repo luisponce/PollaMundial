@@ -11,7 +11,7 @@ var server = restify.createServer({name : 'myapp'});
 var ipAdd = '127.0.0.1';
 var port = '8080';
 
-mongoClient.connect('mongodb://localhost:27017/chicken', function(err, dbInst){
+mongoClient.connect('mongodb://localhost:27017/pool', function(err, dbInst){
     if(err){
         throw err;
     }

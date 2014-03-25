@@ -35,5 +35,6 @@
       ]
     }
   ],
+  "status" : "open/closed",
   "teams" : ["Colombia", "Brasil", "Japón"]
 }

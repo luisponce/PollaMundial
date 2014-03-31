@@ -11,15 +11,21 @@ var db;
 //    });
 //}
 //
-//function getPoolById(req, res, next){
-//    res.header("Access-Control-Allow-Origin", "*");
-//    res.header("Access-Control-Allow-Headers", "X-Requested-With");
-//    db.collection('pools').findOne({'_id' : new ObjectID(req.params.chickenId)}, function(err, chicken){
-//       if(err){throw err;}
-//       console.dir(chicken);
-//       res.send(200, chicken);
-//    });
-//}
+function getPoolById(req, res, next){
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "X-Requested-With");
+    db.collection('pools').findOne({'_id' : new ObjectID(req.params.poolId)}, 
+        function(err, pool){
+            if(err){
+                res.send(501, err);
+                return next(err);
+            }
+            if(pool){
+                res.send(200, pool);
+            }
+        }
+    );
+}
 
 function getPoolsByUserId(req, res, next){
     //Retorna la lista de pollas a las que está registrado el
@@ -74,27 +80,71 @@ function checkUserRegistration(req, res, next){
     db.collection('users').findOne({'_id' : req.params.userId},
         function(err, doc){
             if(err){
-                res.send(200, 'false');
+                res.send(501, err);
                 return next();
             }
-            if(doc){
-                for(var i = 0; i < doc.pools.length; i++){
-                    if(doc.pools[i].poolId == req.params.poolId){
+            //Busca la polla para ver si está cerrada.
+            db.collection('pools').findOne({'_id' : new ObjectID(req.params.poolId)},
+                function(err, dbPool){
+                    if(err){
+                        res.send(501, err);
+                        return next(err);
+                    }
+                    if(dbPool){
+                        //si está cerrada.
+                        if(dbPool.status == "closed"){
+                            res.send(200, 'false');
+                            return next();
+                        }
+                        else{
+                            if(doc){
+                                for(var i = 0; i < doc.pools.length; i++){
+                                    if(doc.pools[i].poolId == req.params.poolId){
+                                        res.send(200, 'true');
+                                        return next();
+                                    }
+                                }
+                                res.send(200, 'false');
+                                return next();
+                            }
+                        }
+                    }
+                    else{
                         res.send(200, 'false');
+                        return next();
                     }
                 }
-                res.send(200, 'true');
+            );
+            return next();
+        }
+    );
+    return next();
+}
+
+function getUsersInPool(req, res, next){
+    //Buscar los usuarios que estén registrados a la polla con
+    //poolId
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "X-Requested-With");
+    db.collection('users').find({'pools' : {'$elemMatch' : {'poolId': parseInt(req.params.poolId)}}}).toArray(
+        function(err, users){
+            if(err){
+                res.send(501, err);
+                return next(err);
+            }
+            if(users){
+                res.send(200, users);
                 return next();
             }
+            res.send(200, []);
+            return next();
         }
     );
 }
-
 // </editor-fold>
 
 // <editor-fold defaultstate="collapsed" desc="POST services">
 function insertUser(req, res, next){
-    console.dir("registering");
     //Registrar el usuario. Si algo sale mal, retornar falso.
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "X-Requested-With");
@@ -110,11 +160,33 @@ function insertUser(req, res, next){
                 return next();
             }
         }
-    );    
+    );
 }
 
 function registerUserToPool(req, res, next){
-    //Registrar un usuario en una polla. Retornar falso si pasa algo.
+    //upsert user object with new pool.
+    db.collection('users').update({'_id' : req.params.userId}, {$addToSet: {'pools' : {'poolId' : req.params.poolId}}},
+        function(err){
+            if(err){
+                res.send(501, err);
+                return next(err);
+            }
+            db.collection('pools').findOne({'_id' : new ObjectID(req.params.poolId)}, {'stages' : false},
+                function(err, pool){
+                    if(err){
+                        res.send(501, err);
+                        return next(err);
+                    }
+                    if(pool){
+                        res.send(200, pool);
+                        return next();
+                    }
+                    res.send(200);
+                    return next();
+                }
+            );
+        }
+    );
 }
 
 function insertPool(req, res, next){
@@ -144,5 +216,7 @@ exports.setDB = setDB;
 //exports.getPoolById = getPoolById;
 exports.getPoolsByUserId = getPoolsByUserId;
 exports.checkUserRegistration = checkUserRegistration;
+exports.getUsersInPool = getUsersInPool;
 exports.insertUser = insertUser;
 exports.insertPool = insertPool;
+exports.registerUserToPool = registerUserToPool;

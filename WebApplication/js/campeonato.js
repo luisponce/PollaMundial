@@ -18,10 +18,12 @@ $(document).ready(function() {
             var input = [inputFields.first().val(), inputFields.last().val()];
             
             //crear el match a guardar en forecasts
-            var match;
+            var match = new Object();
             match.matchId = matchId;
             match.team1 = input[0];
-            match.team1 = input[1];
+            match.team2 = input[1];
+            
+            console.log(match.team1 + " " + match.team2);
             
             //guarda el forecast
             //encontrar el pool
